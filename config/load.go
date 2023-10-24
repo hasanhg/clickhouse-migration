@@ -88,16 +88,16 @@ func load(p *properties.Properties) (cfg *config, err error) {
 	f.Bool("v", false, "Show version")
 
 	// Database params
-	f.StringVar(&cfg.Database.Driver, "database.driver", Default.Database.Driver, "Database driver to be used")
-	f.StringVar(&cfg.Database.IP, "database.ip", Default.Database.IP, "Database ip addr")
-	f.IntVar(&cfg.Database.Port, "database.port", Default.Database.Port, "Database port")
-	f.StringVar(&cfg.Database.User, "database.username", Default.Database.User, "Database username")
-	f.StringVar(&cfg.Database.Password, "database.password", Default.Database.Password, "Database password")
-	f.StringVar(&cfg.Database.Name, "database.name", Default.Database.Name, "Database name")
-	f.BoolVar(&cfg.Database.Debug, "database.debug", Default.Database.Debug, "Database debug verbose mode")
-	f.IntVar(&cfg.Database.ConnMaxIdle, "database.connmaxidle", Default.Database.ConnMaxIdle, "Maximum number of connections in the idle connection pool")
-	f.IntVar(&cfg.Database.ConnMaxOpen, "database.connmaxopen", Default.Database.ConnMaxOpen, "Maximum number of open connections to the database")
-	f.IntVar(&cfg.Database.ConnMaxLifetime, "database.connmaxlifetime", Default.Database.ConnMaxLifetime, "Maximum amount of time a connection may be reused")
+	f.StringVar(&cfg.Database.Driver, "postgres.driver", Default.Database.Driver, "Database driver to be used")
+	f.StringVar(&cfg.Database.IP, "postgres.host", Default.Database.IP, "Database ip addr")
+	f.IntVar(&cfg.Database.Port, "postgres.port", Default.Database.Port, "Database port")
+	f.StringVar(&cfg.Database.User, "postgres.user", Default.Database.User, "Database username")
+	f.StringVar(&cfg.Database.Password, "postgres.password", Default.Database.Password, "Database password")
+	f.StringVar(&cfg.Database.Name, "postgres.db", Default.Database.Name, "Database name")
+	f.BoolVar(&cfg.Database.Debug, "postgres.debug", Default.Database.Debug, "Database debug verbose mode")
+	f.IntVar(&cfg.Database.ConnMaxIdle, "postgres.connmaxidle", Default.Database.ConnMaxIdle, "Maximum number of connections in the idle connection pool")
+	f.IntVar(&cfg.Database.ConnMaxOpen, "postgres.connmaxopen", Default.Database.ConnMaxOpen, "Maximum number of open connections to the database")
+	f.IntVar(&cfg.Database.ConnMaxLifetime, "postgres.connmaxlifetime", Default.Database.ConnMaxLifetime, "Maximum amount of time a connection may be reused")
 
 	// ClickHouse params
 	f.StringVar(&cfg.ClickHouse.IP, "clickhouse.ip", Default.ClickHouse.IP, "ClickHouse server ip addr")
