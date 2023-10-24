@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -25,7 +24,6 @@ func InitDB() error {
 
 	var (
 		cfg         = config.Config
-		drv         = cfg.Database.Driver
 		ip          = cfg.Database.IP
 		port        = cfg.Database.Port
 		user        = cfg.Database.User
@@ -39,16 +37,7 @@ func InitDB() error {
 		conn        *sql.DB
 	)
 
-	switch drv {
-	case "mssql":
-		conn, err = sql.Open("mssql", fmt.Sprintf("server=%s;port=%d;user id=%s;password=%s;database=%s", ip, port, user, pass, name))
-	case "postgres":
-		if strings.HasSuffix(cfg.Database.IP, "postgresql") {
-			conn, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", ip, port, user, pass, name))
-		} else {
-			conn, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=require", ip, port, user, pass, name))
-		}
-	}
+	conn, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", ip, port, user, pass, name))
 
 	if err != nil {
 		return fmt.Errorf("Database connection error: %s", err.Error())
