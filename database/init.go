@@ -52,6 +52,7 @@ func InitDB() error {
 	}
 
 	db = &gorp.DbMap{Db: conn, Dialect: gorp.PostgresDialect{}}
+	db.AddTableWithNameAndSchema(Audit{}, "workspace", "audit").SetKeys(true, "id")
 	db.AddTableWithNameAndSchema(JobPG{}, "workspace", "jobs").SetKeys(true, "id")
 
 	if debug {
