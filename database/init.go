@@ -37,7 +37,7 @@ func InitDB() error {
 		conn        *sql.DB
 	)
 
-	conn, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", ip, port, user, pass, name))
+	conn, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=require", ip, port, user, pass, name))
 
 	if err != nil {
 		return fmt.Errorf("Database connection error: %s", err.Error())

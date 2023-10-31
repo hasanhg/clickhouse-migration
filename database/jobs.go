@@ -77,7 +77,7 @@ type JobEntry struct {
 
 func MigrateJobs() {
 	var (
-		size = 100
+		size = 3_000_000
 		page = 1
 	)
 

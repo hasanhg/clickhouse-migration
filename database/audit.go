@@ -44,7 +44,7 @@ type AuditPG struct {
 
 func MigrateAudits() {
 	var (
-		size = 100
+		size = 1_000_000
 		page = 1
 	)
 
@@ -62,6 +62,8 @@ func MigrateAudits() {
 			log.Println("Migrate audits failed:", err)
 			return
 		}
+
+		log.Println("Selected from pg")
 
 		for _, a := range audits {
 			chAudits = append(chAudits, &Audit{
@@ -83,13 +85,15 @@ func MigrateAudits() {
 			return
 		}
 
+		log.Println("Data convertion done")
+
 		err := ch.Create(chAudits).Error
 		if err != nil {
 			log.Println("Migrate audits failed on create", err)
 			return
 		}
 
-		log.Println("Migration page:", page)
+		log.Println("Migration page completed:", page)
 		page++
 	}
 }

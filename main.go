@@ -49,6 +49,6 @@ func main() {
 
 	initDatabase()
 
-	database.MigrateJobs()
+	//database.MigrateJobs()
 	//database.MigrateAudits()
 }
